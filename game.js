@@ -1,3 +1,24 @@
+//create button
+
+const rps = document.querySelector("#r-p-s");
+
+const rock = document.createElement("button");
+rock.textContent = "Rock";
+rock.addEventListener("click", () => game("rock"));
+rps.appendChild(rock);
+
+const paper = document.createElement("button");
+paper.textContent = "Paper";
+paper.addEventListener("click", () => game("paper"));
+rps.appendChild(paper);
+
+const scissors = document.createElement("button");
+scissors.textContent = "Scissors";
+scissors.addEventListener("click", () => game("scissors"));
+rps.appendChild(scissors);
+
+//function
+
 function getComputerChoice(){
     let value = Math.random()
     let valueFix = value * 100
@@ -13,11 +34,10 @@ function getComputerChoice(){
     }
 }
 
-function playRound(){
-    let choice = prompt("Rock, Paper, or Scissors?")
-    let computerChoice = getComputerChoice()
-    let choiceLowercase = choice.toLowerCase()
-    let computerChoiceLowerCase = computerChoice.toLowerCase()
+function playRound(playerChoice){
+    let computerChoice = getComputerChoice();
+    let choiceLowercase = playerChoice.toLowerCase();
+    let computerChoiceLowerCase = computerChoice.toLowerCase();
     
     if(choiceLowercase === computerChoiceLowerCase){
         const tieResult = "The result is tie"
@@ -35,38 +55,21 @@ function playRound(){
     }
 }
 
-function game(){
+function game(playerSelection){
     let playerWin = 0;
     let computerWin = 0;
     let tie = 0;
-    for (let i = 0; i < 5; i++) {
-        let versus = playRound()
-        if (versus.includes("You win")){
-            console.log(versus)
-            playerWin++
-            console.log("You win: " + playerWin)
-        }
-        else if (versus.includes("You lose")) {
-            console.log(versus)
-            computerWin++
-            console.log("Computer win: " + computerWin)
-        }
-        else if (versus.includes("tie")){
-            console.log(versus)
-            tie++
-            console.log("Tie(s): " + tie)
-        }
-        else {
-            console.log("Bro, this code is broke")
-        }
-    }
-    console.log("The result is:")
-    if (playerWin > computerWin){
+
+    let versus = playRound(playerSelection);
+
+    if (versus.includes("You win")){
         console.log("You win against computer")
-    } else {
+        playerWin++;
+    } else if (versus.includes("You lose")) {
         console.log("You lose against computer")
+        computerWin++;
+    } else {
+        console.log(("Tie"));
+        tie++;
     }
-    console.log("You win: " + playerWin)
-    console.log("Computer win: " + computerWin)
-    console.log("Tie(s): " + tie)
 }
