@@ -134,6 +134,7 @@ function gameFinished(){
         console.log("Error");
         return "Error";
     }
+    result.textContent = "";
 }
 
 function rematch(){
