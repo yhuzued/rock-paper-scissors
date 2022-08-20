@@ -124,7 +124,7 @@ function game(choice){
 }
 
 function gameFinished(){
-    if (playerWin === playerLose && playerTie > playerLose && playerTie > playerWin){
+    if (playerWin === playerLose){
         totalResult.textContent = "The game finished, you tie against computer.";
     } else if (playerWin > playerLose){
         totalResult.textContent = "The game finished, you win against computer.";
